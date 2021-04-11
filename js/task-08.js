@@ -16,20 +16,8 @@ const boxesRef = document.querySelector('#boxes');
 if (!inputRef.hasAttribute('max')) {
     inputRef.setAttribute('max', 100);  
 }
-const maxValue = +inputRef.getAttribute('max'); 
+const maxValue = +inputRef.getAttribute('max');
 
-const randomRGB = () => {
-    let colorRefArr = [];
-    for (let i = 0; i < 6; i++){
-        let randomNamber = Math.floor(Math.random() * 15);        
-        let hexString = randomNamber.toString(16);
-        colorRefArr.push(hexString);
-    }
-    console.log(colorRefArr);
-    let colorRef = colorRefArr.join('');
-    console.log(colorRef);
-    return `#${colorRef}`;
-}
 
 // const randomRGB = () => {
 //     const colorRefArr = [];
@@ -40,18 +28,23 @@ const randomRGB = () => {
 //     return `rgb(${colorRef})`;
 // }
 
+const randomRGB = () => {    
+    let randomColor = Math.floor(Math.random() * 16777215).toString(16);
+    return `#${randomColor}`;
+}
 const createBox = (amount) => {
     if (amount > maxValue) {
-        alert (`You have to set amoun less ${maxValue}`);
+        alert (`You have to set amount less ${maxValue}`);
         return '';
     }
     const elems = [];
     let countSize  = 30;
         for (let i = 0; i < amount; i++){
             const newElem = document.createElement('div');
-            newElem.style.backgroundColor = randomRGB();
-            newElem.style.width = `${countSize}px`
-            newElem.style.height = `${countSize}px`
+            newElem.setAttribute(
+                'style',
+                `width: ${countSize}px; height: ${countSize}px; background-color: ${randomRGB()}`
+            );
             elems.push(newElem);
             countSize +=10;
         }
