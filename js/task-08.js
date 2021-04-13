@@ -32,23 +32,40 @@ const randomRGB = () => {
     let randomColor = Math.floor(Math.random() * 16777215).toString(16);
     return `#${randomColor}`;
 }
+// const createBox = (amount) => {
+//     if (amount > maxValue) {
+//         alert (`You have to set amount less ${maxValue}`);
+//         return '';
+//     }
+//     const elems = [];
+//     let countSize  = 30;
+//         for (let i = 0; i < amount; i++){
+//             const newElem = document.createElement('div');
+//             newElem.setAttribute(
+//                 'style',
+//                 `width: ${countSize}px; height: ${countSize}px; background-color: ${randomRGB()}`
+//             );
+//             elems.push(newElem);
+//             countSize +=10;
+//         }
+//     return elems;
+// }
+
 const createBox = (amount) => {
-    if (amount > maxValue) {
-        alert (`You have to set amount less ${maxValue}`);
+    if (amount > 100) {
+        alert('You have to set amoun less 100');
         return '';
-    }
-    const elems = [];
-    let countSize  = 30;
-        for (let i = 0; i < amount; i++){
-            const newElem = document.createElement('div');
-            newElem.setAttribute(
-                'style',
-                `width: ${countSize}px; height: ${countSize}px; background-color: ${randomRGB()}`
-            );
-            elems.push(newElem);
-            countSize +=10;
-        }
-    return elems;
+    }    
+    return Array(Number(amount)).fill().reduce((acc, item, index) => {
+        const beginSize = 30;
+        const newElem = document.createElement('div');
+        newElem.setAttribute(
+            'style',
+            `width: ${beginSize + (index * 10)}px; height: ${beginSize + (index * 10)}px; background-color: ${randomRGB()}`
+        );
+        acc.push(newElem);
+        return acc
+    }, [])
 }
 
 
