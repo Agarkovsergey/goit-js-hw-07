@@ -52,8 +52,8 @@ const randomRGB = () => {
 // }
 
 const createBox = (amount) => {
-    if (amount > 100) {
-        alert('You have to set amoun less 100');
+    if (amount > maxValue) {
+        alert(`You have to set amoun less ${maxValue}`);
         return '';
     }    
     return Array(Number(amount)).fill().reduce((acc, item, index) => {
